@@ -5,6 +5,8 @@ defmodule MetaWorldServer.Application do
 
   use Application
 
+  use Boundary, top_level?: true, deps: [MetaWorldServer, MetaWorldServerWeb]
+
   @impl true
   def start(_type, _args) do
     children = [

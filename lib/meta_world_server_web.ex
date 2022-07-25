@@ -17,6 +17,8 @@ defmodule MetaWorldServerWeb do
   and import those modules here.
   """
 
+  use Boundary, deps: [MetaWorldServer], exports: [Endpoint]
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: MetaWorldServerWeb

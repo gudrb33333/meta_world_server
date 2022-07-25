@@ -61,7 +61,8 @@ defmodule MetaWorldServer.MixProject do
       {:excoveralls, "~> 0.14", only: [:dev, :test], runtime: false},
       # {:boundary, "~> 0.9.0", runtime: false},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:secure_random, "~> 0.5"}
     ]
   end
 

@@ -59,7 +59,8 @@ defmodule MetaWorldServer.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.14", only: [:dev, :test], runtime: false},
-      {:boundary, "~> 0.9.0", runtime: false}
+      {:boundary, "~> 0.9.0", runtime: false},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
 

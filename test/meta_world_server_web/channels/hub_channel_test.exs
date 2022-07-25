@@ -14,6 +14,11 @@ defmodule MetaWorldServerWeb.HubChannelTest do
     assert_reply ref, :ok, %{"hello" => "there"}
   end
 
+  test "naf broadcasts to hub:test ", %{socket: socket} do
+    push(socket, "naf", %{"hello" => "all"})
+    assert_broadcast "naf", %{"hello" => "all"}
+  end
+
   test "shout broadcasts to hub:lobby", %{socket: socket} do
     push(socket, "shout", %{"hello" => "all"})
     assert_broadcast "shout", %{"hello" => "all"}

@@ -18,6 +18,12 @@ defmodule MetaWorldServerWeb.HubChannel do
     {:reply, {:ok, payload}, socket}
   end
 
+  @impl true
+  def handle_in("naf" = event, payload, socket) do
+    broadcast_from!(socket, event, payload)
+    {:noreply, socket}
+  end
+
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (hub:lobby).
   @impl true

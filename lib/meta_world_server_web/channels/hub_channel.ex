@@ -1,14 +1,28 @@
 defmodule MetaWorldServerWeb.HubChannel do
   @moduledoc false
   use MetaWorldServerWeb, :channel
+  alias MetaWorldServerWeb.Presence
 
   @impl true
-  def join("hub:" <> _hub_sid, _payload, socket) do
+  def join("hub:" <> hub_sid, _payload, socket) do
     # if authorized?(payload) do
+
+    send(self(), {:begin_tracking, socket.assigns.session_id, hub_sid})
+
     {:ok, socket}
     # else
     #  {:error, %{reason: "unauthorized"}}
     # end
+  end
+
+  @impl true
+  def handle_info({:begin_tracking, session_id, _hub_sid}, socket) do
+    {:ok, _} =
+      Presence.track(socket, session_id, %{online_at: inspect(System.system_time(:second))})
+
+    push(socket, "presence_state", socket |> Presence.list())
+
+    {:noreply, socket}
   end
 
   # Channels can be used in a request/response fashion

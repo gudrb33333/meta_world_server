@@ -14,6 +14,8 @@ defmodule MetaWorldServer.Application do
       MetaWorldServerWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: MetaWorldServer.PubSub},
+      # String the Presence system
+      MetaWorldServerWeb.Presence,
       # Start the Endpoint (http/https)
       MetaWorldServerWeb.Endpoint
       # Start a worker by calling: MetaWorldServer.Worker.start_link(arg)

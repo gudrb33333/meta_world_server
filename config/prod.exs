@@ -10,7 +10,11 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :meta_world_server, MetaWorldServerWeb.Endpoint,
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  # critical for Phoenix to run
+  server: true,
+  root: ".",
+  version: Application.spec(:meta_world_server, :vsn)
 
 # Do not print debug messages in production
 config :logger, level: :info

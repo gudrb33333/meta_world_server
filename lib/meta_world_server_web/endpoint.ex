@@ -12,8 +12,12 @@ defmodule MetaWorldServerWeb.Endpoint do
 
   # socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
   socket "/socket", MetaWorldServerWeb.SessionSocket,
-    websocket: true,
-    longpoll: true
+    websocket: [
+      check_origin: [
+        "http://localhost",
+        "https://meta-world.gudrb33333.click"
+      ]
+    ]
 
   # Serve at "/" the static files from "priv/static" directory.
   #

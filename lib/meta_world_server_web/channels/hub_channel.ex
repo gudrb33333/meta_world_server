@@ -4,12 +4,16 @@ defmodule MetaWorldServerWeb.HubChannel do
   alias MetaWorldServerWeb.Presence
 
   @impl true
-  def join("hub:" <> hub_sid, _payload, socket) do
+  def join("hub:" <> hub_sid, %{"profile" => profile}, socket) do
     # if authorized?(payload) do
+
+    socket =
+      socket
+      |> assign(:profile, profile)
 
     send(self(), {:begin_tracking, socket.assigns.session_id, hub_sid})
 
-    {:ok, socket}
+    {:ok, socket.assigns.session_id, socket}
     # else
     #  {:error, %{reason: "unauthorized"}}
     # end
@@ -17,8 +21,7 @@ defmodule MetaWorldServerWeb.HubChannel do
 
   @impl true
   def handle_info({:begin_tracking, session_id, _hub_sid}, socket) do
-    {:ok, _} =
-      Presence.track(socket, session_id, %{online_at: inspect(System.system_time(:second))})
+    {:ok, _} = Presence.track(socket, session_id, socket.assigns)
 
     push(socket, "presence_state", socket |> Presence.list())
 
@@ -33,8 +36,31 @@ defmodule MetaWorldServerWeb.HubChannel do
   end
 
   @impl true
-  def handle_in("naf" = event, payload, socket) do
-    broadcast_from!(socket, event, payload)
+  def handle_in(
+        "naf" = event,
+        %{
+          "sessionId" => session_id,
+          "positionX" => position_x,
+          "positionY" => position_y,
+          "positionZ" => position_z,
+          "animation" => animation,
+          "orientationX" => orientation_x,
+          "orientationY" => orientation_y,
+          "orientationZ" => orientation_z
+        },
+        socket
+      ) do
+    broadcast_from!(socket, event, %{
+      "sessionId" => session_id,
+      "positionX" => position_x,
+      "positionY" => position_y,
+      "positionZ" => position_z,
+      "animation" => animation,
+      "orientationX" => orientation_x,
+      "orientationY" => orientation_y,
+      "orientationZ" => orientation_z
+    })
+
     {:noreply, socket}
   end
 

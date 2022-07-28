@@ -3,9 +3,11 @@ defmodule MetaWorldServerWeb.HubChannelTest do
 
   alias MetaWorldServerWeb.{SessionSocket}
 
+  @default_join_params %{"profile" => %{}}
+
   setup do
     {:ok, socket} = connect(SessionSocket, %{})
-    {:ok, _, socket} = subscribe_and_join(socket, MetaWorldServerWeb.HubChannel, "hub:lobby")
+    {:ok, _, socket} = subscribe_and_join(socket, "hub:lobby", @default_join_params)
     %{socket: socket}
   end
 
@@ -15,8 +17,27 @@ defmodule MetaWorldServerWeb.HubChannelTest do
   end
 
   test "naf broadcasts to hub:test ", %{socket: socket} do
-    push(socket, "naf", %{"hello" => "all"})
-    assert_broadcast "naf", %{"hello" => "all"}
+    push(socket, "naf", %{
+      "sessionId" => "session_id",
+      "positionX" => "position_x",
+      "positionY" => "position_y",
+      "positionZ" => "position_z",
+      "animation" => "animation",
+      "orientationX" => "orientation_x",
+      "orientationY" => "orientation_y",
+      "orientationZ" => "orientation_z"
+    })
+
+    assert_broadcast "naf", %{
+      "sessionId" => session_id,
+      "positionX" => position_x,
+      "positionY" => position_y,
+      "positionZ" => position_z,
+      "animation" => animation,
+      "orientationX" => orientation_x,
+      "orientationY" => orientation_y,
+      "orientationZ" => orientation_z
+    }
   end
 
   test "shout broadcasts to hub:lobby", %{socket: socket} do

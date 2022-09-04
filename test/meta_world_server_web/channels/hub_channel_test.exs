@@ -1,4 +1,4 @@
-defmodule MetaWorldServerWeb.HubChannelTest do
+defmodule MetaWorldServerWeb.RoomChannelTest do
   use MetaWorldServerWeb.ChannelCase
 
   alias MetaWorldServerWeb.{SessionSocket}
@@ -7,7 +7,7 @@ defmodule MetaWorldServerWeb.HubChannelTest do
 
   setup do
     {:ok, socket} = connect(SessionSocket, %{})
-    {:ok, _, socket} = subscribe_and_join(socket, "hub:lobby", @default_join_params)
+    {:ok, _, socket} = subscribe_and_join(socket, "room:lobby", @default_join_params)
     %{socket: socket}
   end
 
@@ -16,7 +16,7 @@ defmodule MetaWorldServerWeb.HubChannelTest do
     assert_reply ref, :ok, %{"hello" => "there"}
   end
 
-  test "naf broadcasts to hub:test ", %{socket: socket} do
+  test "naf broadcasts to room:test ", %{socket: socket} do
     push(socket, "naf", %{
       "sessionId" => "session_id",
       "positionX" => "position_x",
@@ -40,7 +40,7 @@ defmodule MetaWorldServerWeb.HubChannelTest do
     }
   end
 
-  test "shout broadcasts to hub:lobby", %{socket: socket} do
+  test "shout broadcasts to room:lobby", %{socket: socket} do
     push(socket, "shout", %{"hello" => "all"})
     assert_broadcast "shout", %{"hello" => "all"}
   end

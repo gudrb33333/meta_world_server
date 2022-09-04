@@ -19,7 +19,7 @@ defmodule MetaWorldServerWeb.SessionSocket do
   # See the [`Channels guide`](https://hexdocs.pm/phoenix/channels.html)
   # for further details.
 
-  channel "hub:*", MetaWorldServerWeb.HubChannel
+  channel "room:*", MetaWorldServerWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

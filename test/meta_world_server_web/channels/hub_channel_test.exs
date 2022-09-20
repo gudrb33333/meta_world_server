@@ -16,8 +16,8 @@ defmodule MetaWorldServerWeb.RoomChannelTest do
     assert_reply ref, :ok, %{"hello" => "there"}
   end
 
-  test "naf broadcasts to room:test ", %{socket: socket} do
-    push(socket, "naf", %{
+  test "networkedData broadcasts to room:test ", %{socket: socket} do
+    push(socket, "networkedData", %{
       "sessionId" => "session_id",
       "positionX" => "position_x",
       "positionY" => "position_y",
@@ -28,15 +28,39 @@ defmodule MetaWorldServerWeb.RoomChannelTest do
       "orientationZ" => "orientation_z"
     })
 
-    assert_broadcast "naf", %{
-      "sessionId" => session_id,
-      "positionX" => position_x,
-      "positionY" => position_y,
-      "positionZ" => position_z,
-      "animation" => animation,
-      "orientationX" => orientation_x,
-      "orientationY" => orientation_y,
-      "orientationZ" => orientation_z
+    assert_broadcast "networkedData", %{
+      "sessionId" => "session_id",
+      "positionX" => "position_x",
+      "positionY" => "position_y",
+      "positionZ" => "position_z",
+      "animation" => "animation",
+      "orientationX" => "orientation_x",
+      "orientationY" => "orientation_y",
+      "orientationZ" => "orientation_z"
+    }
+  end
+
+  test "networkedDataChair broadcasts to room:test ", %{socket: socket} do
+    push(socket, "networkedDataInChair", %{
+      "sessionId" => "session_id",
+      "positionX" => "position_x",
+      "positionY" => "position_y",
+      "positionZ" => "position_z",
+      "animation" => "animation",
+      "orientationX" => "orientation_x",
+      "orientationY" => "orientation_y",
+      "orientationZ" => "orientation_z"
+    })
+
+    assert_broadcast "networkedDataInChair", %{
+      "sessionId" => "session_id",
+      "positionX" => "position_x",
+      "positionY" => "position_y",
+      "positionZ" => "position_z",
+      "animation" => "animation",
+      "orientationX" => "orientation_x",
+      "orientationY" => "orientation_y",
+      "orientationZ" => "orientation_z"
     }
   end
 

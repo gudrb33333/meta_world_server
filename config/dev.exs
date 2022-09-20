@@ -71,7 +71,7 @@ config :meta_world_server, MetaWorldServerWeb.Endpoint,
   ]
 
 # Do not include metadata nor timestamps in development logs
-#config :logger, :console, format: "[$level] $message\n"
+# config :logger, :console, format: "[$level] $message\n"
 config :logger, level: :info
 
 # Set a higher stacktrace during development. Avoid configuring such

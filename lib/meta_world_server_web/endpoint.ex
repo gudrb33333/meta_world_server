@@ -15,7 +15,7 @@ defmodule MetaWorldServerWeb.Endpoint do
     websocket: [
       check_origin: [
         "https://hubs.local:8080",
-        "https://meta-world.gudrb33333.click",
+        "https://meta-world.gudrb33333.click"
       ]
     ]
 

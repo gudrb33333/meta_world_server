@@ -38,59 +38,21 @@ defmodule MetaWorldServerWeb.RoomChannel do
   @impl true
   def handle_in(
         "networkedData" = event,
-        %{
-          "sessionId" => session_id,
-          "positionX" => position_x,
-          "positionY" => position_y,
-          "positionZ" => position_z,
-          "animation" => animation,
-          "rotationX" => rotation_x,
-          "rotationY" => rotation_y,
-          "rotationZ" => rotation_z
-        },
+        payload,
         socket
       ) do
-    broadcast_from!(socket, event, %{
-      "sessionId" => session_id,
-      "positionX" => position_x,
-      "positionY" => position_y,
-      "positionZ" => position_z,
-      "animation" => animation,
-      "rotationX" => rotation_x,
-      "rotationY" => rotation_y,
-      "rotationZ" => rotation_z
-    })
+    broadcast_from!(socket, event, payload)
 
     {:noreply, socket}
   end
 
   @impl true
   def handle_in(
-        "networkedDataInVehicle" = event,
-        %{
-          "sessionId" => session_id,
-          "positionX" => position_x,
-          "positionY" => position_y,
-          "positionZ" => position_z,
-          "animation" => animation,
-          "vehicleRotationX" => vehicle_rotation_x,
-          "vehicleRotationY" => vehicle_rotation_y,
-          "vehicleRotationZ" => vehicle_rotation_z,
-          "vehicleSpawnName" => vehicle_spawn_name
-        },
+        "networkedDataInChair" = event,
+        payload,
         socket
       ) do
-    broadcast_from!(socket, event, %{
-      "sessionId" => session_id,
-      "positionX" => position_x,
-      "positionY" => position_y,
-      "positionZ" => position_z,
-      "animation" => animation,
-      "vehicleRotationX" => vehicle_rotation_x,
-      "vehicleRotationY" => vehicle_rotation_y,
-      "vehicleRotationZ" => vehicle_rotation_z,
-      "vehicleSpawnName" => vehicle_spawn_name
-    })
+    broadcast_from!(socket, event, payload)
 
     {:noreply, socket}
   end

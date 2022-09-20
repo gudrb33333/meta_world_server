@@ -14,10 +14,8 @@ defmodule MetaWorldServerWeb.Endpoint do
   socket "/socket", MetaWorldServerWeb.SessionSocket,
     websocket: [
       check_origin: [
-        "http://localhost:8080",
-        "http://localhost:8081",
         "https://hubs.local:8080",
-        "https://meta-world.gudrb33333.click"
+        "https://meta-world.gudrb33333.click",
       ]
     ]
 

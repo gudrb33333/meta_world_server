@@ -1,5 +1,7 @@
 # MetaWorldServer
 
+meta-world-client를 위한 게임 네트워크 
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

@@ -63,7 +63,8 @@ defmodule MetaWorldServer.MixProject do
       {:ex_doc, "~> 0.24", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:secure_random, "~> 0.5"},
-      {:distillery, "~> 2.0"}
+      {:distillery, "~> 2.0"},
+      {:phoenix_pubsub_redis, "~> 3.0.0"}
     ]
   end
 

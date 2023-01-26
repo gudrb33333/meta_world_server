@@ -13,7 +13,14 @@ defmodule MetaWorldServer.Application do
       # Start the Telemetry supervisor
       MetaWorldServerWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: MetaWorldServer.PubSub},
+      {Phoenix.PubSub,
+       [
+         name: MetaWorldServer.PubSub,
+         adapter: Phoenix.PubSub.Redis,
+         host: System.get_env("REDIS_HOST"),
+         port: 6379,
+         node_name: System.get_env("PHOENIX_NODE")
+       ]},
       # String the Presence system
       MetaWorldServerWeb.Presence,
       # Start the Endpoint (http/https)

@@ -46,3 +46,6 @@ jobs:
           mix ecto.create
           mix ecto.migrate
           mix coveralls
+        env:
+          PHOENIX_NODE: Test1
+          REDIS_HOST: ec2-3-39-254-216.ap-northeast-2.compute.amazonaws.com

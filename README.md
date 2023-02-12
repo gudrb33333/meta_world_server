@@ -4,7 +4,7 @@ meta-world-client를 위한 게임 네트워크 서버.
 
 # 다중서버 환경 데이터 공유
 
-같은 공간에 접속 시 유저가 서로 다른 서버에 소켓 연결할 경우 Redis Pub/Sub를 사용하여 데이터 공유
+같은 공간에서 유저들이 서로 다른 서버에 연결을 할 경우 Redis Pub/Sub를 사용하여 데이터 공유
 
 <img src="https://user-images.githubusercontent.com/59630175/215166647-651488dd-6fb1-4751-bc7d-f16ebf2b7311.png" width="700" height="400"/>
 
